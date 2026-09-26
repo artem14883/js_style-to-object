@@ -1,12 +1,21 @@
-'use strict';
-
 /**
- * @param {string} sourceString
+ * @param {string} stylesString
  *
- * @return {object}
+ * @returns {Object}
  */
-function convertToObject(sourceString) {
-  // write your code here
-}
+function convertToObject(stylesString) {
+  return stylesString
+    .split(';')
+    .filter(style => style.trim() !== '')
+    .reduce((result, style) => {
+      const colonIndex = style.indexOf(':');
 
-module.exports = convertToObject;
+      if (colonIndex !== -1) {
+        const key = style.slice(0, colonIndex).trim();
+        const value = style.slice(colonIndex + 1).trim();
+        result[key] = value;
+      }
+
+      return result;
+    }, {});
+}
