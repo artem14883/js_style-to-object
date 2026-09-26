@@ -6,7 +6,7 @@
 function convertToObject(stylesString) {
   return stylesString
     .split(';')
-    .filter(style => style.trim() !== '')
+    .filter((style) => style.trim() !== '')
     .reduce((stylesObject, style) => {
       const colonIndex = style.indexOf(':');
 
