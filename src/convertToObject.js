@@ -7,15 +7,17 @@ function convertToObject(stylesString) {
   return stylesString
     .split(';')
     .filter(style => style.trim() !== '')
-    .reduce((result, style) => {
+    .reduce((stylesObject, style) => {
       const colonIndex = style.indexOf(':');
 
       if (colonIndex !== -1) {
         const key = style.slice(0, colonIndex).trim();
         const value = style.slice(colonIndex + 1).trim();
-        result[key] = value;
+        stylesObject[key] = value;
       }
 
-      return result;
+      return stylesObject;
     }, {});
 }
+
+module.exports = convertToObject;
